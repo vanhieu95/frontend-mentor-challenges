@@ -1,0 +1,242 @@
+:root {
+  --clr-primary-400: hsl(215, 51%, 70%);
+  --clr-primary-600: hsl(178, 100%, 50%);
+
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-700: hsl(215, 32%, 27%);
+  --clr-neutral-800: hsl(216, 50%, 16%);
+  --clr-neutral-850: hsl(217, 60%, 12%);
+  --clr-neutral-900: hsl(217, 54%, 11%);
+  --ff-base: 'Outfit', sans-serif;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 600;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  min-height: 100vh;
+}
+
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* Utilities */
+.flex-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* General Styling */
+body {
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+  font-size: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--clr-primary-400);
+  background-color: var(--clr-neutral-900);
+  padding: 2rem;
+}
+
+main {
+  margin: auto;
+}
+
+.card {
+  --content-spacing: 1rem;
+  --content-padding: 1.5rem;
+
+  display: grid;
+  gap: var(--content-spacing);
+  background-color: var(--clr-neutral-800);
+  padding: var(--content-padding);
+  border-radius: 1rem;
+  max-width: 310px;
+
+  box-shadow: 0 1rem 0 0.5rem var(--clr-neutral-900),
+              0 1rem 0 2rem var(--clr-neutral-850);
+}
+
+.card__img {
+  position: relative;
+}
+
+.card__img img {
+  border-radius: 0.5rem;
+}
+
+.card__img:is(:hover, :active)::before {
+  --clr-primary: hsla(178, 100%, 50%, 0.5);
+
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--clr-primary) url('./images/icon-view.svg') no-repeat center;
+}
+
+.card__content {
+  display: grid;
+  gap: var(--content-spacing);
+  margin-top: 1rem;
+}
+
+.card__title {
+  font-weight: var(--fw-bold);
+}
+
+.card__currency {
+  font-weight: var(--fw-bold);
+  color: var(--clr-primary-600);
+}
+
+.card__footer {
+  border-top: 1px solid var(--clr-primary-400);
+  padding-top: var(--content-spacing);
+}
+
+:is(.card__title a, .card__author) {
+  color: var(--clr-neutral-100);
+  text-decoration: none;
+}
+
+:is(.card__content, .card__footer) > p {
+  font-weight: var(--fw-light);
+}
+
+:is(.card__title a, .card__author):is(:hover, :active) {
+  color: var(--clr-primary-600);
+  cursor: pointer;
+}
+
+[data-icon] {
+  --content-spacing: 0.5rem;
+
+  position: relative;
+  display: flex;
+  gap: var(--content-spacing);
+  align-items: center;
+}
+
+[data-icon='currency']::before {
+  content: '';
+  width: 11px;
+  height: 18px;
+  background-image: url('./images/icon-ethereum.svg');
+  background-repeat: no-repeat;
+}
+
+[data-icon='clock']::before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  background-image: url('./images/icon-clock.svg');
+  background-repeat: no-repeat;
+}
+
+[data-icon='avatar'] {
+  --content-spacing: 1rem;
+}
+
+[data-icon='avatar']::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  background-image: url('./images/image-avatar.png');
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid var(--clr-neutral-100);
+  border-radius: 50%;
+}
